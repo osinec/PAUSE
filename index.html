@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Читай со мной</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
             --bg-gradient-end: #2575fc;
             --text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             --container-bg: rgba(255,255,255,0.08);
-            --card-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            --card-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
         * {
@@ -29,50 +29,46 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            padding: 15px 10px 80px; /* отступ снизу под кнопку */
+            padding: 20px;
             color: #fff;
             overflow-x: hidden;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.3rem; /* Уменьшено для телефона */
+            font-size: 3.5rem;
             font-weight: 700;
-            margin: 20px 0 10px;
+            margin-bottom: 10px;
             background: linear-gradient(to right, #fff, #ffd789);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: var(--text-shadow);
             letter-spacing: -0.5px;
-            text-align: center;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 300;
-            margin-bottom: 25px;
+            margin-bottom: 50px;
             opacity: 0.9;
-            letter-spacing: 0.5px;
-            text-align: center;
-            padding: 0 10px;
+            letter-spacing: 1px;
         }
 
         .card {
             background: var(--container-bg);
             backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 35px 20px; /* Уменьшены отступы */
+            border-radius: 30px;
+            padding: 50px 40px;
             width: 100%;
-            max-width: 95vw; /* Почти на всю ширину экрана */
+            max-width: 800px;
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(255,255,255,0.1);
-            transform: translateY(20px);
+            transform: translateY(30px);
             opacity: 0;
-            animation: floatIn 0.6s ease forwards;
-            margin-bottom: 20px;
+            animation: floatIn 0.8s ease forwards;
         }
 
         @keyframes floatIn {
@@ -84,16 +80,15 @@
 
         .sentence {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.4rem; /* Адаптивный размер */
+            font-size: 1.8rem;
             font-weight: 500;
-            line-height: 1.5;
-            margin: 20px 0;
-            padding: 15px 0;
+            line-height: 1.6;
+            margin: 30px 0;
+            padding: 25px 0;
+            position: relative;
             opacity: 0;
             transform: scale(0.98);
-            animation: fadeInUp 0.5s ease forwards 0.2s;
-            text-align: center;
-            word-wrap: break-word;
+            animation: fadeInUp 0.6s ease forwards 0.3s;
         }
 
         @keyframes fadeInUp {
@@ -105,12 +100,12 @@
 
         .progress-container {
             width: 100%;
-            height: 8px; /* Чуть уже */
+            height: 10px;
             background: rgba(255,255,255,0.15);
             border-radius: 50px;
-            margin: 20px 0;
+            margin: 30px 0;
             overflow: hidden;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         }
 
         .progress-bar {
@@ -119,34 +114,30 @@
             background: linear-gradient(90deg, #ff9800, #ffcc80);
             border-radius: 50px;
             transition: width 0.015s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 2px 6px rgba(255, 152, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4);
         }
 
         .countdown {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.15rem; /* Меньше на телефоне */
+            font-size: 1.3rem;
             font-weight: 500;
-            height: 35px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.4s ease;
-            text-align: center;
         }
 
         .countdown.show {
             opacity: 1;
         }
 
-        /* Кнопка — фиксированная снизу на мобильных */
+        /* Кнопка с ссылкой — текст на одной строке */
         .action-button {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 14px 32px;
-            font-size: 1.1rem;
+            margin-top: 40px;
+            padding: 16px 40px;
+            font-size: 1.2rem;
             font-weight: 600;
             font-family: 'Quicksand', sans-serif;
             color: white;
@@ -157,20 +148,26 @@
             box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
-            letter-spacing: 0.5px;
-            z-index: 1000;
-            width: 85%;
-            max-width: 400px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            white-space: nowrap;
         }
 
         .action-button:hover {
-            transform: translateX(-50%) translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.6);
         }
 
         .action-button:active {
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(-1px);
             box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
         }
 
@@ -189,17 +186,11 @@
             left: 100%;
         }
 
-        /* Дополнительная адаптация для очень маленьких экранов */
-        @media (max-height: 600px) {
-            body {
-                padding-top: 10px;
-                padding-bottom: 90px;
-            }
-            .logo { font-size: 2rem; margin: 15px 0 5px; }
-            .card { padding: 25px 15px; }
-            .sentence { font-size: 1.3rem; padding: 10px 0; }
-            .progress-container { height: 6px; margin: 15px 0; }
-            .action-button { padding: 12px 28px; font-size: 1rem; }
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .card { padding: 30px 20px; }
+            .sentence { font-size: 1.5rem; }
+            .action-button { padding: 14px 30px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -208,105 +199,113 @@
     <p class="subtitle">Плавное чтение. Наслаждайся каждым словом.</p>
 
     <div class="card">
-        <div class="sentence" id="sentence">Здесь появится первое предложение...</div>
+        <div class="sentence" id="sentence">Загружаем предложения...</div>
         <div class="progress-container">
             <div class="progress-bar" id="progress"></div>
         </div>
         <div class="countdown" id="countdown">Следующее предложение через 3...</div>
     </div>
 
-    <!-- Фиксированная кнопка снизу -->
+    <!-- Кнопка с ссылкой -->
     <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">📖 Открыть в Telegram</a>
 
+    <!-- Подключаем внешний файл с предложениями -->
+    <script src="sentences.js"></script>
+
     <script>
-        const sentences = [
-            "Солнце медленно поднималось над горизонтом, окрашивая небо в нежные оттенки розового и оранжевого.",
-            "Кошка лениво потянулась на подоконнике, наслаждаясь первыми лучами утреннего солнца.",
-            "Ветер шептал тайны деревьев, заставляя листья шуршать, как старые страницы книги.",
-            "Он открыл книгу и погрузился в мир, где реальность смешивалась с фантазией.",
-            "Море бесконечно — как и мечты тех, кто смотрит на него с берега, полные надежд и желаний."
-        ];
+        // Ждём загрузки массива SENTENCES из sentences.js
+        function initApp() {
+            if (typeof SENTENCES === 'undefined' || !Array.isArray(SENTENCES) || SENTENCES.length === 0) {
+                document.getElementById('sentence').textContent = "Ошибка: файл sentences.js не загружен или пуст.";
+                return;
+            }
 
-        let currentSentenceIndex = 0;
-        let isReading = false;
-        let countdownInterval;
-        let readingInterval;
+            let currentSentenceIndex = 0;
+            let isReading = false;
+            let countdownInterval;
+            let readingInterval;
 
-        const sentenceElement = document.getElementById('sentence');
-        const progressElement = document.getElementById('progress');
-        const countdownElement = document.getElementById('countdown');
+            const sentenceElement = document.getElementById('sentence');
+            const progressElement = document.getElementById('progress');
+            const countdownElement = document.getElementById('countdown');
 
-        function displaySentence(index) {
-            sentenceElement.textContent = sentences[index];
-            progressElement.style.width = '0%';
-            countdownElement.classList.remove('show');
+            function displaySentence(index) {
+                sentenceElement.textContent = SENTENCES[index];
+                progressElement.style.width = '0%';
+                countdownElement.classList.remove('show');
 
-            sentenceElement.style.opacity = '0';
-            sentenceElement.style.transform = 'scale(0.98)';
-            void sentenceElement.offsetWidth;
-            setTimeout(() => {
-                sentenceElement.style.opacity = '1';
-                sentenceElement.style.transform = 'scale(1)';
-            }, 50);
-        }
+                sentenceElement.style.opacity = '0';
+                sentenceElement.style.transform = 'scale(0.98)';
+                void sentenceElement.offsetWidth;
+                setTimeout(() => {
+                    sentenceElement.style.opacity = '1';
+                    sentenceElement.style.transform = 'scale(1)';
+                }, 50);
+            }
 
-        function startReading() {
-            if (isReading) return;
-            isReading = true;
+            function startReading() {
+                if (isReading) return;
+                isReading = true;
 
-            if (readingInterval) clearInterval(readingInterval);
+                if (readingInterval) clearInterval(readingInterval);
 
-            const text = sentenceElement.textContent;
-            const totalChars = text.length;
-            let currentChar = 0;
+                const text = sentenceElement.textContent;
+                const totalChars = text.length;
+                let currentChar = 0;
 
-            // ⬇️⬇️⬇️ ЗДЕСЬ НАСТРАИВАЕТСЯ СКОРОСТЬ ДВИЖЕНИЯ ПОЛЗУНКА ⬇️⬇️⬇️
-            // Чем МЕНЬШЕ значение — тем БЫСТРЕЕ движется ползунок.
-            // На телефоне хорошо работает 35-50 мс
-            const stepTime = 40; // ← ИЗМЕНИ ЭТО ЗНАЧЕНИЕ ДЛЯ НАСТРОЙКИ СКОРОСТИ
+                // ⬇️ ЗДЕСЬ НАСТРАИВАЕТСЯ СКОРОСТЬ ДВИЖЕНИЯ ПОЛЗУНКА
+                const stepTime = 40; // Меньше = быстрее (рекомендуется 30–60)
 
-            readingInterval = setInterval(() => {
-                if (currentChar >= totalChars) {
-                    clearInterval(readingInterval);
-                    startCountdown();
-                    return;
-                }
+                readingInterval = setInterval(() => {
+                    if (currentChar >= totalChars) {
+                        clearInterval(readingInterval);
+                        startCountdown();
+                        return;
+                    }
 
-                const progressPercent = (currentChar / totalChars) * 100;
-                progressElement.style.width = `${progressPercent}%`;
+                    const progressPercent = (currentChar / totalChars) * 100;
+                    progressElement.style.width = `${progressPercent}%`;
 
-                currentChar++;
-            }, stepTime);
-        }
+                    currentChar++;
+                }, stepTime);
+            }
 
-        function startCountdown() {
-            let seconds = 3;
-            countdownElement.textContent = `Следующее предложение через ${seconds}...`;
-            countdownElement.classList.add('show');
+            function startCountdown() {
+                let seconds = 3;
+                countdownElement.textContent = `Пауза ${seconds}...`;
+                countdownElement.classList.add('show');
 
-            if (countdownInterval) clearInterval(countdownInterval);
+                if (countdownInterval) clearInterval(countdownInterval);
 
-            countdownInterval = setInterval(() => {
-                seconds--;
-                if (seconds <= 0) {
-                    clearInterval(countdownInterval);
-                    nextSentence();
-                } else {
-                    countdownElement.textContent = `Следующее предложение через ${seconds}...`;
-                }
-            }, 1000);
-        }
+                countdownInterval = setInterval(() => {
+                    seconds--;
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                        nextSentence();
+                    } else {
+                        countdownElement.textContent = ` ${seconds}...`;
+                    }
+                }, 1000);
+            }
 
-        function nextSentence() {
-            currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+            function nextSentence() {
+                currentSentenceIndex = (currentSentenceIndex + 1) % SENTENCES.length;
+                displaySentence(currentSentenceIndex);
+                isReading = false;
+                setTimeout(startReading, 800);
+            }
+
+            // Инициализация
             displaySentence(currentSentenceIndex);
-            isReading = false;
-            setTimeout(startReading, 600); // чуть быстрее переключение на телефоне
+            setTimeout(startReading, 1000);
         }
 
-        // Инициализация
-        displaySentence(currentSentenceIndex);
-        setTimeout(startReading, 800);
+        // Запускаем приложение после загрузки DOM и sentences.js
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
     </script>
 </body>
 </html>
