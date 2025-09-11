@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>✨ Читай со мной</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff9800;
+            --bg-gradient-start: #6a11cb;
+            --bg-gradient-end: #2575fc;
+            --text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            --container-bg: rgba(255,255,255,0.08);
+            --card-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 15px 10px 80px; /* отступ снизу под кнопку */
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem; /* Уменьшено для телефона */
+            font-weight: 700;
+            margin: 20px 0 10px;
+            background: linear-gradient(to right, #fff, #ffd789);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--text-shadow);
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .card {
+            background: var(--container-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 35px 20px; /* Уменьшены отступы */
+            width: 100%;
+            max-width: 95vw; /* Почти на всю ширину экрана */
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: floatIn 0.6s ease forwards;
+            margin-bottom: 20px;
+        }
+
+        @keyframes floatIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .sentence {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.4rem; /* Адаптивный размер */
+            font-weight: 500;
+            line-height: 1.5;
+            margin: 20px 0;
+            padding: 15px 0;
+            opacity: 0;
+            transform: scale(0.98);
+            animation: fadeInUp 0.5s ease forwards 0.2s;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px; /* Чуть уже */
+            background: rgba(255,255,255,0.15);
+            border-radius: 50px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff9800, #ffcc80);
+            border-radius: 50px;
+            transition: width 0.015s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 2px 6px rgba(255, 152, 0, 0.4);
+        }
+
+        .countdown {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.15rem; /* Меньше на телефоне */
+            font-weight: 500;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            text-align: center;
+        }
+
+        .countdown.show {
+            opacity: 1;
+        }
+
+        /* Кнопка — фиксированная снизу на мобильных */
+        .action-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+            color: white;
+            background: linear-gradient(45deg, #ff9800, #ff6b35);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            z-index: 1000;
+            width: 85%;
+            max-width: 400px;
+        }
+
+        .action-button:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.6);
+        }
+
+        .action-button:active {
+            transform: translateX(-50%) translateY(0);
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .action-button:hover::before {
+            left: 100%;
+        }
+
+        /* Дополнительная адаптация для очень маленьких экранов */
+        @media (max-height: 600px) {
+            body {
+                padding-top: 10px;
+                padding-bottom: 90px;
+            }
+            .logo { font-size: 2rem; margin: 15px 0 5px; }
+            .card { padding: 25px 15px; }
+            .sentence { font-size: 1.3rem; padding: 10px 0; }
+            .progress-container { height: 6px; margin: 15px 0; }
+            .action-button { padding: 12px 28px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="logo">Читай со мной</h1>
+    <p class="subtitle">Плавное чтение. Наслаждайся каждым словом.</p>
+
+    <div class="card">
+        <div class="sentence" id="sentence">Здесь появится первое предложение...</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        <div class="countdown" id="countdown">Следующее предложение через 3...</div>
+    </div>
+
+    <!-- Фиксированная кнопка снизу -->
+    <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">📖 Открыть в Telegram</a>
+
+    <script>
+        const sentences = [
+            "Солнце медленно поднималось над горизонтом, окрашивая небо в нежные оттенки розового и оранжевого.",
+            "Кошка лениво потянулась на подоконнике, наслаждаясь первыми лучами утреннего солнца.",
+            "Ветер шептал тайны деревьев, заставляя листья шуршать, как старые страницы книги.",
+            "Он открыл книгу и погрузился в мир, где реальность смешивалась с фантазией.",
+            "Море бесконечно — как и мечты тех, кто смотрит на него с берега, полные надежд и желаний."
+        ];
+
+        let currentSentenceIndex = 0;
+        let isReading = false;
+        let countdownInterval;
+        let readingInterval;
+
+        const sentenceElement = document.getElementById('sentence');
+        const progressElement = document.getElementById('progress');
+        const countdownElement = document.getElementById('countdown');
+
+        function displaySentence(index) {
+            sentenceElement.textContent = sentences[index];
+            progressElement.style.width = '0%';
+            countdownElement.classList.remove('show');
+
+            sentenceElement.style.opacity = '0';
+            sentenceElement.style.transform = 'scale(0.98)';
+            void sentenceElement.offsetWidth;
+            setTimeout(() => {
+                sentenceElement.style.opacity = '1';
+                sentenceElement.style.transform = 'scale(1)';
+            }, 50);
+        }
+
+        function startReading() {
+            if (isReading) return;
+            isReading = true;
+
+            if (readingInterval) clearInterval(readingInterval);
+
+            const text = sentenceElement.textContent;
+            const totalChars = text.length;
+            let currentChar = 0;
+
+            // ⬇️⬇️⬇️ ЗДЕСЬ НАСТРАИВАЕТСЯ СКОРОСТЬ ДВИЖЕНИЯ ПОЛЗУНКА ⬇️⬇️⬇️
+            // Чем МЕНЬШЕ значение — тем БЫСТРЕЕ движется ползунок.
+            // На телефоне хорошо работает 35-50 мс
+            const stepTime = 40; // ← ИЗМЕНИ ЭТО ЗНАЧЕНИЕ ДЛЯ НАСТРОЙКИ СКОРОСТИ
+
+            readingInterval = setInterval(() => {
+                if (currentChar >= totalChars) {
+                    clearInterval(readingInterval);
+                    startCountdown();
+                    return;
+                }
+
+                const progressPercent = (currentChar / totalChars) * 100;
+                progressElement.style.width = `${progressPercent}%`;
+
+                currentChar++;
+            }, stepTime);
+        }
+
+        function startCountdown() {
+            let seconds = 3;
+            countdownElement.textContent = `Следующее предложение через ${seconds}...`;
+            countdownElement.classList.add('show');
+
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            countdownInterval = setInterval(() => {
+                seconds--;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    nextSentence();
+                } else {
+                    countdownElement.textContent = `Следующее предложение через ${seconds}...`;
+                }
+            }, 1000);
+        }
+
+        function nextSentence() {
+            currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+            displaySentence(currentSentenceIndex);
+            isReading = false;
+            setTimeout(startReading, 600); // чуть быстрее переключение на телефоне
+        }
+
+        // Инициализация
+        displaySentence(currentSentenceIndex);
+        setTimeout(startReading, 800);
+    </script>
+</body>
+</html>
