@@ -126,8 +126,7 @@
             width: 0%;
             background: linear-gradient(90deg, #ff9800, #ffcc80);
             border-radius: 50px;
-            /* ✅ Изменено: плавная анимация даже при медленном stepTime */
-            transition: width 0.1s ease-in-out; /* Было: 0.015s cubic-bezier(...) */
+            transition: width 0.1s ease-in-out;
             box-shadow: 0 2px 6px rgba(255, 152, 0, 0.4);
         }
 
@@ -249,7 +248,8 @@
                 return;
             }
 
-            let currentSentenceIndex = 0;
+            // ✅ Стартуем со случайного предложения
+            let currentSentenceIndex = Math.floor(Math.random() * SENTENCES.length);
             let isReading = false;
             let countdownInterval;
             let readingInterval;
@@ -282,7 +282,7 @@
                 const totalChars = text.length;
                 let currentChar = 0;
 
-                const stepTime = 65; // ⬅️ Скорость чтения (чем больше — тем медленнее)
+                const stepTime = 65;
 
                 readingInterval = setInterval(() => {
                     if (currentChar >= totalChars) {
@@ -317,6 +317,7 @@
             }
 
             function nextSentence() {
+                // ✅ Переходим к следующему по порядку, зацикливаем в конце
                 currentSentenceIndex = (currentSentenceIndex + 1) % SENTENCES.length;
                 displaySentence(currentSentenceIndex);
                 isReading = false;
