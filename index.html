@@ -33,11 +33,16 @@
             align-items: center;
             padding: 15px 10px;
             color: #fff;
-            overflow-x: hidden;
             line-height: 1.5;
-            /* Убираем возможность скролла */
+
+            /* 🔒 Полная блокировка скролла и жестов на мобильных */
             height: 100vh;
-            position: relative;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            touch-action: none;
         }
 
         .logo {
@@ -76,7 +81,6 @@
             opacity: 0;
             animation: floatIn 0.6s ease forwards;
             margin-bottom: 10px;
-            /* Делаем карточку фиксированной высотой */
             height: auto;
             max-height: 80vh;
             overflow: hidden;
@@ -147,7 +151,6 @@
             opacity: 1;
         }
 
-        /* Кнопка — теперь внутри карточки, но выше таймера */
         .action-button {
             margin-top: 15px;
             padding: 12px 28px;
@@ -198,7 +201,6 @@
             left: 100%;
         }
 
-        /* Адаптация для очень маленьких экранов */
         @media (max-height: 650px) {
             body {
                 padding: 10px 5px;
@@ -238,11 +240,9 @@
             <div class="progress-bar" id="progress"></div>
         </div>
         <div class="countdown" id="countdown">Следующее предложение через 3...</div>
-        <!-- Кнопка теперь внутри карточки -->
         <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">📖 Открыть в Telegram</a>
     </div>
 
-    <!-- Подключаем внешний файл с предложениями -->
     <script src="sentences.js"></script>
 
     <script>
@@ -285,7 +285,6 @@
                 const totalChars = text.length;
                 let currentChar = 0;
 
-                // ⬇️ Скорость движения ползунка (меньше = быстрее)
                 const stepTime = 1;
 
                 readingInterval = setInterval(() => {
@@ -327,7 +326,6 @@
                 setTimeout(startReading, 600);
             }
 
-            // Инициализация
             displaySentence(currentSentenceIndex);
             setTimeout(startReading, 800);
         }
