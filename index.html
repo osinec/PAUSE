@@ -35,14 +35,11 @@
             color: #fff;
             line-height: 1.5;
 
-            /* 🔒 Полная блокировка скролла и жестов на мобильных */
+            /* ✅ Безопасная блокировка скролла для Telegram и мобильных */
             height: 100vh;
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            touch-action: none;
+            overflow: hidden; /* ← Главное — запрещает скролл */
+            position: relative; /* ← Убрали fixed — иначе Telegram ломается */
+            /* touch-action: none; ← Убрали — ломает Telegram WebView */
         }
 
         .logo {
