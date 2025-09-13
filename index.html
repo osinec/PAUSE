@@ -34,8 +34,6 @@
             padding: 15px 10px;
             color: #fff;
             line-height: 1.5;
-
-            /* ✅ Безопасная блокировка скролла для Telegram и мобильных */
             height: 100vh;
             overflow: hidden;
             position: relative;
@@ -248,7 +246,6 @@
                 return;
             }
 
-            // ✅ Стартуем со случайного предложения
             let currentSentenceIndex = Math.floor(Math.random() * SENTENCES.length);
             let isReading = false;
             let countdownInterval;
@@ -278,24 +275,19 @@
 
                 if (readingInterval) clearInterval(readingInterval);
 
-                const text = sentenceElement.textContent;
-                const totalChars = text.length;
-                let currentChar = 0;
-
-                const stepTime = 65;
+                const totalTime = 4000; // 4 секунды на предложение
+                const startTime = Date.now();
 
                 readingInterval = setInterval(() => {
-                    if (currentChar >= totalChars) {
-                        clearInterval(readingInterval);
-                        startCountdown();
-                        return;
-                    }
-
-                    const progressPercent = (currentChar / totalChars) * 100;
+                    const elapsed = Date.now() - startTime;
+                    const progressPercent = Math.min((elapsed / totalTime) * 100, 100);
                     progressElement.style.width = `${progressPercent}%`;
 
-                    currentChar++;
-                }, stepTime);
+                    if (elapsed >= totalTime) {
+                        clearInterval(readingInterval);
+                        startCountdown();
+                    }
+                }, 50); // Обновляем каждые 50 мс для плавности
             }
 
             function startCountdown() {
@@ -317,7 +309,6 @@
             }
 
             function nextSentence() {
-                // ✅ Переходим к следующему по порядку, зацикливаем в конце
                 currentSentenceIndex = (currentSentenceIndex + 1) % SENTENCES.length;
                 displaySentence(currentSentenceIndex);
                 isReading = false;
