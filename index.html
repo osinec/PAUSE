@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>✨ Читай со мной — тренажёр речи</title>
+    <title>✨ Говори как оратор — тренажёр паузы</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,11 +25,14 @@
             box-sizing: border-box;
         }
 
-        /* 🔒 ГЛОБАЛЬНАЯ ФИКСАЦИЯ: УБРАН СКРОЛЛ ВЕЗДЕ */
+        /* 🔒 БЛОКИРОВКА СКРОЛЛА НА ВСЕХ УСТРОЙСТВАХ */
         html, body {
             height: 100%;
-            overflow: hidden; /* ← Запрещаем прокрутку */
-            touch-action: none; /* ← Блокируем жесты на мобильных */
+            overflow: hidden;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
 
         body {
@@ -103,7 +106,7 @@
             margin-bottom: 25px;
             height: auto;
             max-height: 80vh;
-            overflow: hidden; /* ← Внутри карточки тоже не скроллим */
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -303,23 +306,14 @@
         <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">🔥 Скачать тренажёр для Mac</a>
     </div>
 
-    <script>
-        const SENTENCES = [
-            "Пауза — не молчание, а невысказанная сила.",
-            "Говори медленно — пусть каждое слово входит в сердце.",
-            "Тишина между словами страшнее любого крика.",
-            "Кто владеет паузой — владеет вниманием.",
-            "Не спеши заполнять тишину. Дай ей поработать на тебя.",
-            "Великие речи строятся не на словах, а на паузах между ними.",
-            "Дыши. Остановись. Позволь слушателю догнать твою мысль.",
-            "Пауза — это когда слушатель думает, что ты гений.",
-            "Твоя речь станет мощнее, когда ты научишься останавливаться.",
-            "Молчи — и тебя услышат громче."
-        ];
+    <!-- Подключаем внешний файл с предложениями -->
+    <script src="sentences.js"></script>
 
+    <script>
         function initApp() {
+            // Проверяем, загружен ли массив из sentences.js
             if (typeof SENTENCES === 'undefined' || !Array.isArray(SENTENCES) || SENTENCES.length === 0) {
-                document.getElementById('sentence').textContent = "Добавьте фразы в массив SENTENCES";
+                document.getElementById('sentence').textContent = "Ошибка: добавьте фразы в sentences.js";
                 return;
             }
 
