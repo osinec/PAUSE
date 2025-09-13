@@ -78,7 +78,6 @@
             height: auto;
             max-height: 80vh;
             overflow: hidden;
-            /* Центрируем содержимое */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -169,11 +168,6 @@
             gap: 6px;
             justify-content: center;
             white-space: nowrap;
-            /* УБРАНО: кнопка теперь подстраивается под текст */
-            /* width: 100%; */
-            /* max-width: 300px; */
-            /* margin-left: auto; */
-            /* margin-right: auto; */
         }
 
         .action-button:hover {
@@ -186,6 +180,8 @@
             box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
         }
 
+        /* Убираем анимацию блика, если она вызывает проблемы на моб. устройствах */
+        /*
         .action-button::before {
             content: '';
             position: absolute;
@@ -200,6 +196,7 @@
         .action-button:hover::before {
             left: 100%;
         }
+        */
 
         @media (max-height: 650px) {
             body {
@@ -281,7 +278,7 @@
 
                 if (readingInterval) clearInterval(readingInterval);
 
-                const totalTime = 4000; // ← ЭТА СТРОКА ЗАДАЁТ ДЛИТЕЛЬНОСТЬ ПРОГРЕСС-БАРА (4 секунды)
+                const totalTime = 4000;
                 const startTime = Date.now();
 
                 readingInterval = setInterval(() => {
@@ -298,7 +295,7 @@
 
             function startCountdown() {
                 let seconds = 3;
-                countdownElement.textContent = `Следующее предложение через ${seconds}...`;
+                countdownElement.textContent = `Пауза ${seconds}...`; // ← СИНХРОНИЗИРОВАНО С ВАШИМ ТЕКСТОМ
                 countdownElement.classList.add('show');
 
                 if (countdownInterval) clearInterval(countdownInterval);
@@ -309,7 +306,7 @@
                         clearInterval(countdownInterval);
                         nextSentence();
                     } else {
-                        countdownElement.textContent = `Следующее предложение через ${seconds}...`;
+                        countdownElement.textContent = `Пауза ${seconds}...`; // ← ЗДЕСЬ ТОЖЕ
                     }
                 }, 1000);
             }
