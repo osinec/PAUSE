@@ -78,6 +78,11 @@
             height: auto;
             max-height: 80vh;
             overflow: hidden;
+            /* Центрируем содержимое */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         @keyframes floatIn {
@@ -164,10 +169,11 @@
             gap: 6px;
             justify-content: center;
             white-space: nowrap;
-            width: 100%;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
+            /* УБРАНО: кнопка теперь подстраивается под текст */
+            /* width: 100%; */
+            /* max-width: 300px; */
+            /* margin-left: auto; */
+            /* margin-right: auto; */
         }
 
         .action-button:hover {
@@ -233,8 +239,8 @@
         <div class="progress-container">
             <div class="progress-bar" id="progress"></div>
         </div>
-        <div class="countdown" id="countdown">Пауза 3...</div>
-        <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">Чтобы твои слова звучали уверенно - жми</a>
+        <div class="countdown" id="countdown">Следующее предложение через 3...</div>
+        <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">📖 Открыть в Telegram</a>
     </div>
 
     <script src="sentences.js"></script>
@@ -275,7 +281,7 @@
 
                 if (readingInterval) clearInterval(readingInterval);
 
-                const totalTime = 6000; // 4 секунды на предложение
+                const totalTime = 4000; // ← ЭТА СТРОКА ЗАДАЁТ ДЛИТЕЛЬНОСТЬ ПРОГРЕСС-БАРА (4 секунды)
                 const startTime = Date.now();
 
                 readingInterval = setInterval(() => {
@@ -287,7 +293,7 @@
                         clearInterval(readingInterval);
                         startCountdown();
                     }
-                }, 50); // Обновляем каждые 50 мс для плавности
+                }, 50);
             }
 
             function startCountdown() {
