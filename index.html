@@ -326,14 +326,26 @@
             const progressElement = document.getElementById('progress');
             const countdownElement = document.getElementById('countdown');
 
+            // 🧠 Рассчитываем время чтения в зависимости от длины предложения
+            function calculateReadingTime(sentence) {
+                const words = sentence.trim().split(/\s+/).length;
+                const timePerWord = 500; // 0.5 секунды на слово
+                let totalTime = words * timePerWord;
+
+                // Ограничиваем от 3 до 10 секунд для комфорта
+                totalTime = Math.max(3000, Math.min(totalTime, 10000));
+                return totalTime;
+            }
+
             function displaySentence(index) {
-                sentenceElement.textContent = SENTENCES[index];
+                const sentence = SENTENCES[index];
+                sentenceElement.textContent = sentence;
                 progressElement.style.width = '0%';
                 countdownElement.classList.remove('show');
 
                 sentenceElement.style.opacity = '0';
                 sentenceElement.style.transform = 'scale(0.95) translateY(10px)';
-                void sentenceElement.offsetWidth;
+                void sentenceElement.offsetWidth; // триггер перерисовки
                 setTimeout(() => {
                     sentenceElement.style.opacity = '1';
                     sentenceElement.style.transform = 'scale(1) translateY(0)';
@@ -346,7 +358,8 @@
 
                 if (readingInterval) clearInterval(readingInterval);
 
-                const totalTime = 5000; // 5 секунд на чтение
+                const currentSentence = SENTENCES[currentSentenceIndex];
+                const totalTime = calculateReadingTime(currentSentence);
                 const startTime = Date.now();
 
                 readingInterval = setInterval(() => {
@@ -358,7 +371,7 @@
                         clearInterval(readingInterval);
                         startCountdown();
                     }
-                }, 50);
+                }, 50); // обновляем каждые 50 мс для плавности
             }
 
             function startCountdown() {
