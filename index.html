@@ -139,22 +139,7 @@
             position: relative;
         }
 
-        .sentence::after {
-            content: "✦";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            font-size: 1.5rem;
-            color: var(--primary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
-            50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
-        }
+        /* ❌ УДАЛЕНА МЕЛЬКАЮЩАЯ ЗВЁЗДОЧКА ✦ */
 
         @keyframes fadeInUp {
             to {
@@ -226,13 +211,15 @@
             50% { transform: scale(1.15); }
         }
 
+        /* ✅ УЛУЧШЕННАЯ КНОПКА */
         .action-button {
             margin-top: 25px;
-            padding: 16px 40px;
-            font-size: 1.2rem;
+            padding: 18px 45px;
+            font-size: 1.25rem;
             font-weight: 700;
             font-family: 'Playfair Display', serif;
-            color: white;
+            color: #ffffff; /* Белый текст для контраста */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Тень для лучшей читаемости */
             background: linear-gradient(45deg, var(--primary), #ff6b6b);
             border: none;
             border-radius: 50px;
@@ -242,9 +229,9 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             position: relative;
             overflow: hidden;
         }
@@ -254,8 +241,8 @@
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
         }
 
         .action-button:hover::before {
@@ -263,14 +250,14 @@
         }
 
         .action-button:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 30px rgba(255, 126, 95, 0.6);
-            letter-spacing: 1.5px;
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 126, 95, 0.7);
+            letter-spacing: 1.8px;
         }
 
         .action-button:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 5px 20px rgba(255, 126, 95, 0.4);
+            transform: translateY(-2px) scale(0.99);
+            box-shadow: 0 6px 25px rgba(255, 126, 95, 0.5);
         }
 
         /* Адаптив */
@@ -282,14 +269,21 @@
             .sentence { font-size: 1.4rem; margin: 15px 0; }
             .progress-container { height: 8px; margin: 15px 0 5px; }
             .countdown { font-size: 1.3rem; height: 40px; }
-            .action-button { padding: 12px 30px; font-size: 1.1rem; margin-top: 20px; }
+            .action-button {
+                padding: 14px 32px;
+                font-size: 1.1rem;
+                margin-top: 20px;
+            }
         }
 
         @media (min-width: 1024px) {
             .logo { font-size: 4rem; }
             .card { max-width: 700px; padding: 60px 50px; border-radius: 40px; }
             .sentence { font-size: 2.2rem; }
-            .action-button { padding: 18px 45px; font-size: 1.3rem; }
+            .action-button {
+                padding: 20px 50px;
+                font-size: 1.35rem;
+            }
         }
     </style>
 </head>
@@ -303,7 +297,7 @@
             <div class="progress-bar" id="progress"></div>
         </div>
         <div class="countdown" id="countdown">Пауза... 3</div>
-        <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">🔥Жми - чтобы твои слова звучали железобетонно</a>
+        <a href="https://t.me/osinec_me/6" target="_blank" class="action-button">🔥 Жми — чтобы твои слова звучали железобетонно</a>
     </div>
 
     <!-- Подключаем внешний файл с предложениями -->
